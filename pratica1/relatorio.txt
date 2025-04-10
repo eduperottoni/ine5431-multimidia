@@ -1,0 +1,28 @@
+Relatório da aula prática 1 da disciplina INE5431 - Sistemas Multimídia
+Estudante: Eduardo Dani Perottoni (21204003)
+
+Questão A)
+
+i) O tamanho teórico é 30 (segundos) x 44100 (Hz) x 16 (bits) x 2 (amostras, pois o áudio é estéreo)= 42336000 bits = 5292000 bytes
+ii) O tamanho do arquivo é 5292044 bytes (isso porque os arquivos WAV possuem um cabeçalho de 44 bytes)
+iii) O tamanho do arquivo em disco é 5296128 bytes. Essa diferença ocorre por conta do tamanho das unidades de alocação em disco. No caso, a unidade mínima é de …
+
+iv) O tamanho do arquivo em disco caso o HD fosse formatado para um tamanho de bloco de 1024B seria de ceil(5292044B (tamanho do arquivo) / 1024B (tamanho do bloco)) * 1024 = 5169 * 1024 = 5293056B
+
+v) Como a taxa de amostragem é de 44100Hz, então o maior componente de frequência é 22050Hz
+
+Questão B)
+
+i) O tamanho teórico é 30 (segundos) x 16000 (Hz) x 16 (bits) x 2 (amostras, pois o áudio é estéreo) = 15360000 bits = 1920000 bytes
+c
+ii) O valor teórico para o maior componente de frequência é 16000Hz / 2 = 8000Hz
+
+iii) Ao ocorrer a diminuição da taxa de amostragem para 16000 Hz, temos que o maior componente teórico de frequência caiu para 8000 Hz,
+o que significa que os sons com uma frequência maior não foram digitalizados, causando faixas inaudíveis no final do primeiro canal e início do segundo.
+
+Questão C)
+
+i) O tamanho dos dados no novo arquivo é 30 (segundos) x 8000 (Hz) x 8 (bits) x 2 (amostras) = 3840000 bits = 480000 bytes
+ii) O valor teórico para o maior componente de frequência É 8000 Hz / 2 = 4000 Hz
+iii) O fato de termos diminuído a quantidade de bits a serem utilizados na conversão do sinal faz com que a discretização
+provoque distorção devido a limitação do tamanho de bits para representar amostras. Isso causa ruído nos áudios.
