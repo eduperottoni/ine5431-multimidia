@@ -1,0 +1,46 @@
+Questão 1)
+Valor do campo tamanho do arquivo = 000C0036 (16)
+Valor do campo offset = 00000036 (16)
+Primeiro pixel da imagem = 0C (B) 0B (G) 09 (R)
+
+Questão 2)
+Tamanho do cabeçalho do arquivo mandril1.cuif é 14 + 4*(1) = 18 bytes
+
+Questão 3)
+Implementação
+
+Questão 4)
+O cálculo de MSE foi 0 pois não houve nenhuma perda de qualidade entre esses arquivos, logo o quadrado das diferenças
+é 0. Dessa forma, PSNR também é 0, ou infinito.
+Isso ocorreu pois a codificação em formato CUIF é uma codificação sem perdas (explícito nos métodos `generateCUIF1` e `readCUIF1`).
+
+Questão 5)
+bmp original: 196,7 kB (196.662 bytes) | compactado: 186,8 kB (186.843 bytes)
+Taxa de Compressão: 196,7 / 186,8 => 1,052997859
+
+cuif original: 196,6 kB (196.626 bytes) | compactado: 181,6 kB (181.636 bytes)
+Taxa de Compressão: 196,6 / 181,6 => 1,082599119
+
+O arquivo que mais compactou foi o CUIF. As técnicas RLE e DPCM se baseiam na redundância espacial.
+O arquivo CUIF torna a redundância ainda mais evidente, unindo valores de cada componente na ordem em que aparecem espacialmente.
+Isso aumenta muito a possibilidade de valores parecidos estarem próximos um do outro. Com isso, técnicas de compressão como o RLE e o DPCM se beneficiam.
+É provável que o RLE encontre mais valores repetidos juntos, codificando repetições com menos bits.
+É provável que o DPCM encontre valores parecidos juntos, codificando mais erros com menos bits.
+
+Questão 6)
+Visualmente parece ter algumas diferenças de tonalidades.
+A estratégia de CUIF.2 é juntar os componentes Verde e Azul em um só valor na imagem armazenada, ou seja, ele usa
+um espaço originalmente destinado para 1 componente e guarda 2 componentes nele, truncando metade dos bits de cada um.
+
+Questão 7)
+Imagem bmp => 196,7 kB (196.662 bytes)
+CUIF.1 => 196,6 kB (196.626 bytes) | Taxa de compressão = 196,7 / 196,6 = 1.0005 (causada pelo cabeçalho)
+CUIF.2 => 131,1 kB (131.090 bytes) | Taxa de compressão = 196.7 / 131.1 = 1.5003
+
+A versão do CUIF que mais compactou foi a 2, visto que temos explicitamente perda de informações na codificação.
+
+Questão 8)
+PSNR => 31.002
+Isso ocorre devido a compressão e alteração dos dadoS pelo método do CUIF2 e isso gera bastante diferença quando
+comparamos os componentes de G e B com a imagem original.
+
