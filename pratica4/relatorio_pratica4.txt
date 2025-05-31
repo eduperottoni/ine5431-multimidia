@@ -1,0 +1,47 @@
+Questão 1)
+
+mandril:
+	- CUIF.1: 196662 / 196626 = 1,000183089
+	- CUIF.2: 196662 / 131090 = 1,500205965
+	- CUIF.3: 196662 / 196626 = 1,000183089
+	- CUIF.4: 196662 / 192121 = 1,023636146
+
+teste:
+	- CUIF.1: 86454 / 86418 = 1,00041658
+	- CUIF.2: 86454 / 57618 = 1,500468604 
+	- CUIF.3: 86454 / 86418 = 1,00041658 
+	- CUIF.4: 86454 / 4026 = 21,473919523 
+
+Questão 2)
+
+A codificação CUIF.2 gerou maior taxa de compressão.
+A estratégia de CUIF.2 é juntar os componentes Verde e Azul em um só valor na imagem armazenada, ou seja, ele usa
+um espaço originalmente destinado para 1 componente e guarda 2 componentes nele, truncando metade dos bits de cada um.
+Ela se sai melhor nessa imagem específica, devido a falta de componentes quentes (vermelhos na imagem). Os outros métodos não se saem bem com a imagem específica.
+
+Questão 3)
+
+A imagem teste.bmp possui pouca variação nos pixels (vários pixels vizinhos se repetem), possuindo também poucas cores (vermelho e preto).
+Isso permite uma alta taxa de compressão pela CUIF.4, uma vez que se baseia na compressão de bytes iguais repetidos.
+A taxa de compressão obtida é alta para CUIF.4, visto o alto índice de repetição de pixels.
+Já a imagem mandril.bmp possui muita variabilidade (os pelos do animal são mesclados, o que aumenta a variação de coloração dos pixels).
+
+Questão 4)
+
+mandril1.bmp: PSNR = infinito
+    -> CUIF.1 codifica canal a canal, e não pixel a pixel. Não há perdas, visto que todos os pixels são codificados.
+mandril2.bmp: PSNR = 31.00244472156138
+    -> CUIF.2 unifica canais verde e azul. Ou seja, parte dos bytes foram comprimidos (perda de informação).
+mandril3.bmp: PSNR 44.117623649979755
+    -> Codificar a imagem em YCbCr diminui o tamanho armazenado. Isso ocorre porque CUIF.4 trunca as componentes na transformação de RGB para YCbCr
+mandril4.bmp: PSNR 39.44684721708644
+    -> Mesmo usando RLE e YCbCr, por conta da alta variabilidade de pixels na imagem, juntamente com flags e cabeçalhos necessaŕios para as codificações,
+       houve aumento do tamanho do arquivo, quando comparado com outras técnicas.
+
+Questão 5)
+
+PSNR(teste.bmp, teste2.bmp) = Infinito
+
+A codificação CUIF.2 suprime parte dos canais verde e azul. Como a imagem é formada apenas pelas cores vermelho (X, 0, 0) e preto (0, 0, 0), X foi mantido no arquivo comprimido,
+assim como a componente vermelha (zero) para os pixels pretos. Desse modo, por conta das características da imagem, a compressão CUIF.2 não apresentou perdas visuais, apenas economia de dados,
+encaixando-se perfeitamente para essa característica de imagem.
